@@ -1,6 +1,7 @@
-import 'package:dtdemo/manual.dart';
 import 'package:flutter/material.dart';
 import 'auth_service.dart';
+import 'Login.dart';
+import 'Register.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -13,12 +14,21 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
-  startManual(BuildContext context) async {
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => manual()),
-    );
+    startRegister(BuildContext context) async {
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Register()),
+      );
+
+    }
+    startLogin(BuildContext context) async {
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Login()),
+      );
 
   }
 
@@ -29,35 +39,48 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Colors.white12,
       appBar: AppBar(
-        title: const Text("DTdemo"),
+        title: const Text("DT demo"),
         backgroundColor: Colors.black38,
       ),
       body: Container(
         width: size.width,
         height: size.height,
         padding: EdgeInsets.only(
-            left: 20, right: 20, top: size.height * 0.2, bottom: 50),
+            left: 20, right: 20, top: size.height * 0.5, bottom: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text("Welcome,\nSign in with",
-                style: TextStyle(fontSize: 30, color: Colors.white)),
+            TextButton(
+
+              onPressed: () {
+                startLogin(context);
+              },
+              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.black)),
+              child: const Text(
+                "LOGIN",
+                style: TextStyle(fontSize: 30, color: Colors.white),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                startRegister(context);
+              },
+              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.black)),
+              child: const Text(
+                "SIGN UP",
+                style: TextStyle(fontSize: 30, color: Colors.white),
+              ),
+            ),
+            const Text("Sign in with",
+                style: TextStyle(fontSize: 15, color: Colors.white)),
             GestureDetector(
                 onTap: () {
                   AuthService().signInWIthGoogle();
                 },
                 child: const Image(
-                    width: 150, image: AssetImage('assets/google.png'))),
-            TextButton(
-              onPressed: () {
-                startManual(context);
-              },
-              child: const Text(
-                "Proceed without Google",
-                style: TextStyle(fontSize: 20, color: Colors.white),
-              ),
-            )
+                    width: 50, image: AssetImage('assets/google.png'))),
+
           ],
         ),
       ),
