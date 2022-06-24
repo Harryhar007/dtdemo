@@ -1,6 +1,5 @@
-import 'package:dtdemo/Login.dart';
+import 'package:dtdemo/manual.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'auth_service.dart';
 
 class LoginPage extends StatefulWidget {
@@ -10,13 +9,15 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
+
+
 class _LoginPageState extends State<LoginPage> {
 
-  Login(BuildContext context) async {
+  startManual(BuildContext context) async {
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => Login(context)),
+      MaterialPageRoute(builder: (context) => manual()),
     );
 
   }
@@ -50,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                     width: 150, image: AssetImage('assets/google.png'))),
             TextButton(
               onPressed: () {
-                Login(context);
+                startManual(context);
               },
               child: const Text(
                 "Proceed without Google",
