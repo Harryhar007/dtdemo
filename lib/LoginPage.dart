@@ -10,26 +10,19 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
-
-
 class _LoginPageState extends State<LoginPage> {
+  startRegister(BuildContext context) async {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Register()),
+    );
+  }
 
-
-    startRegister(BuildContext context) async {
-
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => Register()),
-      );
-
-    }
-    startLogin(BuildContext context) async {
-
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => Login()),
-      );
-
+  startLogin(BuildContext context) async {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Login()),
+    );
   }
 
   @override
@@ -49,29 +42,34 @@ class _LoginPageState extends State<LoginPage> {
             left: 20, right: 20, top: size.height * 0.5, bottom: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            TextButton(
-
-              onPressed: () {
-                startLogin(context);
-              },
-              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.black)),
-              child: const Text(
-                "LOGIN",
-                style: TextStyle(fontSize: 30, color: Colors.white),
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                startRegister(context);
-              },
-              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.black)),
-              child: const Text(
-                "SIGN UP",
-                style: TextStyle(fontSize: 30, color: Colors.white),
-              ),
-            ),
+            SizedBox(
+                width: 200,
+                child: TextButton(
+                  onPressed: () {
+                    startLogin(context);
+                  },
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.black)),
+                  child: const Text(
+                    "LOGIN",
+                    style: TextStyle(fontSize: 25, color: Colors.white),
+                  ),
+                )),
+            SizedBox(
+                width: 200,
+                child: TextButton(
+                  onPressed: () {
+                    startRegister(context);
+                  },
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.black)),
+                  child: const Text(
+                    "SIGN UP",
+                    style: TextStyle(fontSize: 25, color: Colors.white),
+                  ),
+                )),
             const Text("Sign in with",
                 style: TextStyle(fontSize: 15, color: Colors.white)),
             GestureDetector(
@@ -80,7 +78,6 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 child: const Image(
                     width: 50, image: AssetImage('assets/google.png'))),
-
           ],
         ),
       ),
